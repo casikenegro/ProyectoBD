@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource("/estudiantes","EstudiantesController");
+Route::resource("/estudiante","EstudiantesController");
 Route::resource("/carrera","CarreraController");
 Route::resource("/tesis","TesisController");
 Route::resource("/profesor","ProfesoresController");

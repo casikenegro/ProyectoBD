@@ -45,10 +45,21 @@
                         </select>
                         <?php endif; ?>
             </div>
-              <div class="form-group">
-              <label>Telefono</label>
-              <input type="text" id="telefono" name="telefono" value="{{$estudiante->telefono}}" class="form-control" placeholder="telefono">
-              </div>
+            <div class="form-group">
+                        <label>Telefono</label>
+                        <input type="text"  value="{{$estudiante->telefono}}" id="telefono" name="telefono" class="form-control" placeholder="telefono">
+                        </div>
+                       <div class="form-group">
+                        <label>Fecha de ingreso</label>
+                        <input type="date"  value="{{$estudiante->ingreso_estudiante}}" id="ingreso_estudiante" name="ingreso_estudiante" class="form-control" placeholder="ingreso estudiante">
+                        </div>
+                        <div class="form-group">
+                        <label>Periodo</label>
+                        <input type="text" id="periodo_ingreso" name="periodo_ingreso" class="form-control" placeholder="periodo ingreso">
+                        </div>
+                        <div class="form-group">
+                        <div class="form-group text-center">
+                          <a href="/estudiante">
               <div class="form-group">
               <div class="form-group text-center">
               <input type="submit" id="envio" value="Acutalizar" class="btn btn-primary ">

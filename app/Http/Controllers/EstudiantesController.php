@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Estudiantes;
 use Illuminate\Http\Request;
 use App\Carrera;
+use App\EstudiantesPorCarrera;
 class EstudiantesController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class EstudiantesController extends Controller
      */
     public function index()
     {
-        return view("Estudiantes.menu",["Estudiantes"=>"hola"]);
+        return view("Estudiantes.menu",["estudiantes"=>Estudiantes::all()]);
     }
 
     /**
@@ -35,7 +36,17 @@ class EstudiantesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = Estudiantes::create($request->all());
+        EstudiantesPorCarrera::create([
+            'carrera_id'=>$request->carrera_id,
+        'estudiante_id'=>$data->id,
+        'ingreso_estudiante'=>$request->ingreso_estudiante,
+        'periodo_ingreso'=>$request->periodo_ingreso
+        ]);
+        
+        return view("Estudiantes.menu",["estudiantes"=>Estudiantes::all()]);
+      
+ 
     }
 
     /**
@@ -57,8 +68,7 @@ class EstudiantesController extends Controller
      */
     public function edit(Estudiantes $estudiantes)
     {
-        //
-    }
+        return view("Estudiantes.edit",["estudiante"=>$estudiantes]);    }
 
     /**
      * Update the specified resource in storage.
@@ -69,8 +79,9 @@ class EstudiantesController extends Controller
      */
     public function update(Request $request, Estudiantes $estudiantes)
     {
-        //
-    }
+        $carrera->fill($request->all());
+        $carrera->save();
+        return redirect('/estudiante');    }
 
     /**
      * Remove the specified resource from storage.
@@ -80,6 +91,7 @@ class EstudiantesController extends Controller
      */
     public function destroy(Estudiantes $estudiantes)
     {
-        //
+        $carrera->delete();
+        return redirect('/estudiante'); 
     }
 }

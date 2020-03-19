@@ -2,7 +2,7 @@
 @section('content')
             <section class="container">
                 <h1 class="h2 text-center my-3">Formulario de registro Estudiante</h1>
-                <form action="/Estudiante" method="post" name="formulario" id="formulario" autocomplete="off">
+                <form action="/estudiante" method="post" name="formulario" id="formulario" autocomplete="off">
                   {{csrf_field()}}
                   <?php if (count($errors) > 0): ?>
                     <div class="alert alert-danger">
@@ -47,6 +47,14 @@
                         <div class="form-group">
                         <label>Telefono</label>
                         <input type="text" id="telefono" name="telefono" class="form-control" placeholder="telefono">
+                        </div>
+                       <div class="form-group">
+                        <label>Fecha de ingreso</label>
+                        <input type="date" id="ingreso_estudiante" name="ingreso_estudiante" class="form-control" placeholder="ingreso estudiante">
+                        </div>
+                        <div class="form-group">
+                        <label>Periodo</label>
+                        <input type="text" id="periodo_ingreso" name="periodo_ingreso" class="form-control" placeholder="periodo ingreso">
                         </div>
                         <div class="form-group">
                         <div class="form-group text-center">

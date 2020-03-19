@@ -14,7 +14,7 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        return view("Carrera.menu",["Carrera"=>"hola"]);
+        return view("Carrera.menu",["carreras"=>Carrera::all()]);
     }
 
     /**
@@ -35,8 +35,8 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+       $data = Carrera::create($request->all());
+       return redirect('/carrera');    }
 
     /**
      * Display the specified resource.
@@ -57,7 +57,7 @@ class CarreraController extends Controller
      */
     public function edit(Carrera $carrera)
     {
-        //
+        return view("Carrera.edit",["carrera"=>$carrera]);
     }
 
     /**
@@ -69,7 +69,10 @@ class CarreraController extends Controller
      */
     public function update(Request $request, Carrera $carrera)
     {
-        //
+        $carrera->fill($request->all());
+        $carrera->save();
+        return redirect('/carrera');
+
     }
 
     /**
@@ -80,6 +83,6 @@ class CarreraController extends Controller
      */
     public function destroy(Carrera $carrera)
     {
-        //
-    }
+        $carrera->delete();
+        return redirect('/carrera');    }
 }

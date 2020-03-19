@@ -11,4 +11,5 @@ class Carrera extends Model
        'nombre',
       'descripcion'
     ];
-    protected $hidden = ['created_at','updated_at'];}
+    protected $hidden = ['created_at','updated_at'];
+  }

@@ -25,9 +25,9 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-              <a class="dropdown-item" href="/estudiantes">listado Estudiantes</a>
+              <a class="dropdown-item" href="/estudiante">listado Estudiantes</a>
                     <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/estudiantes/create">Registar</a>
+              <a class="dropdown-item" href="/estudiante/create">Registar</a>
             </div>
           </li>
         </ul>

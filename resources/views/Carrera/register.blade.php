@@ -2,7 +2,7 @@
 @section('content')
             <section class="container">
                 <h1 class="h2 text-center my-3">Formulario de registro Estudiante</h1>
-                <form action="/Estudiante" method="post" name="formulario" id="formulario" autocomplete="off">
+                <form action="/carrera" method="post" name="formulario" id="formulario" autocomplete="off">
                   {{csrf_field()}}
                   <?php if (count($errors) > 0): ?>
                     <div class="alert alert-danger">
@@ -27,7 +27,7 @@
                         <input type="text" id="descripcion" name="descripcion" class="form-control" placeholder="Escribe una descripcion">
                         </div>
                         <div class="form-group text-center">
-                          <a href="/estudiante">
+                          <a href="/carrera">
                         <input type="submit" id="envio" value="Registrarse" class="btn btn-primary ">
                         </a>
                         </div>
