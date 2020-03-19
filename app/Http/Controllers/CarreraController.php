@@ -14,7 +14,7 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        //
+        return view("Carrera.menu",["Carrera"=>"hola"]);
     }
 
     /**
@@ -24,7 +24,7 @@ class CarreraController extends Controller
      */
     public function create()
     {
-        //
+        return view("Carrera.register"); 
     }
 
     /**

@@ -25,9 +25,9 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-              <a class="dropdown-item" href="/Estudiantes">listado Estudiantes</a>
+              <a class="dropdown-item" href="/estudiantes">listado Estudiantes</a>
                     <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/Estudiantes/create">Registar</a>
+              <a class="dropdown-item" href="/estudiantes/create">Registar</a>
             </div>
           </li>
         </ul>
@@ -39,9 +39,9 @@
               Carreras
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/User">listado Carreras</a>
+              <a class="dropdown-item" href="/carrera">listado Carreras</a>
                     <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/User/create">Registar</a>
+              <a class="dropdown-item" href="/carrera/create">Registar</a>
             </div>
           </li>
         </ul>
@@ -53,10 +53,10 @@
               Empresa
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/Empresa">listado Empresa</a>
+              <a class="dropdown-item" href="/empresa">listado Empresa</a>
                     <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/Empresa/create">Registar</a>
-              <a class="dropdown-item" href="/TutorIndustrial/create">Registar Tutor Industrial</a>
+              <a class="dropdown-item" href="/empresa/create">Registar</a>
+              <a class="dropdown-item" href="/tutorIndustrial/create">Registar Tutor Industrial</a>
 
             </div>
           </li>
@@ -69,9 +69,9 @@
               Profesores
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/Profesores">listado citas</a>
+              <a class="dropdown-item" href="/profesor">listado profesores</a>
                     <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/Profesores/create">Registar</a>
+              <a class="dropdown-item" href="/profesor/create">Registar</a>
             </div>
           </li>
         </ul>

@@ -14,7 +14,7 @@ class ProfesoresController extends Controller
      */
     public function index()
     {
-        //
+        return view("Profesores.menu",["Profesore"=>"hola"]);
     }
 
     /**
@@ -24,7 +24,7 @@ class ProfesoresController extends Controller
      */
     public function create()
     {
-        //
+        return view("Profesores.register"); 
     }
 
     /**

@@ -9,30 +9,30 @@
      <thead>
    <tr>
      <th scope="col">Nombre</th>
-     <th scope="col">Apellido</th>
-     <th scope="col">Cedula</th>
      <th scope="col">Correo</th>
      <th scope="col">Telefono</th>
+     <th scope="col">Dirreccion</th>
+
       <th scope="col">Editar</th>
      <th scope="col">Eliminar</th>
    </tr>
      </thead>
-<?php if (isset($estudiantes)): ?>
-<?php foreach ($estudiantes as $estudiante): ?>
+<?php if (isset($empresas)): ?>
+<?php foreach ($empresas as $empresa): ?>
   <tbody>
     <tr>
-      <td>  <?php echo e($estudiante->nombre); ?></td>
-      <td><?php echo e($estudiante->apellido); ?></td>
-      <td><?php echo e($estudiante->cedula); ?></td>
-      <td><?php echo e($estudiante->correo); ?></td>
-      <td><?php echo e($estudiante->telefono); ?></td>
+      <td>  <?php echo e($empresa->nombre); ?></td>
+      <td><?php echo e($empresa->apellido); ?></td>
+      <td><?php echo e($empresa->cedula); ?></td>
+      <td><?php echo e($empresa->correo); ?></td>
+      <td><?php echo e($empresa->telefono); ?></td>
 
       <td>
     {{csrf_field()}}
-      <a class="btn btn-primary" href="/estudiante/{{$estudiante->id}}/edit" role="button">edit</a>
+      <a class="btn btn-primary" href="/empresa/{{$empresa->id}}/edit" role="button">edit</a>
     </td>
     <td>
-      <form action="/estudiante/{{$estudiante->id}}" method="POST">
+      <form action="/empresa/{{$empresa->id}}" method="POST">
         {{csrf_field()}}
         @method('DELETE')
       <input type="submit" id="envio" value="Eliminar" class="btn btn-danger ">

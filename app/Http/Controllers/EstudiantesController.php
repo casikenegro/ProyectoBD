@@ -24,7 +24,8 @@ class EstudiantesController extends Controller
      */
     public function create()
     {
-        return view("Estudiantes.register",["carreras"=>Carrera::all()]);    }
+        return view("Estudiantes.register",["carreras"=>Carrera::all()]); 
+    }
 
     /**
      * Store a newly created resource in storage.
