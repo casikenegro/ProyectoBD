@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\Defensa as DefensaModel;
 class Defensa extends Migration
 {
     /**
@@ -32,6 +32,20 @@ class Defensa extends Migration
             $table->decimal('nota_total',8,2);
             $table->timestamps();
         });
+        DefensaModel::create([
+            'id_tesis'=>1,
+            'id_juez_n1'=>1,
+            'id_juez_n2'=>2,
+            'aula'=>7, 
+            'fecha_defensa'=>"2020-12-12",
+            'periodo_universitario'=>"2020-A",
+            'observaciones'=>"ninguna",
+            'nota_juez_n1'=>0,
+            'nota_juez_n2'=>0,
+            'nota_tutor_industrial'=>0,
+            'nota_tutor_academico'=>0,
+            'nota_total'=>0,
+        ]);
     }
 
     /**

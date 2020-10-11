@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Empresa as EmpresaModel;
 
 class Empresa extends Migration
 {
@@ -18,9 +19,15 @@ class Empresa extends Migration
             $table->string('nombre');
             $table->string('correo');
             $table->string('telefono');
-            $table->string('dirrecion',255);
+            $table->string('ubicacion',255);
             $table->timestamps();
         });
+        EmpresaModel::create([
+            'nombre'=>'ibis',
+            'correo'=>'ibis@ibis.com',
+            'telefono'=>'15154',
+            'ubicacion'=>'asdasda'
+        ]);
     }
 
     /**

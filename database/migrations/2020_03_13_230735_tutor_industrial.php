@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\TutorIndustrial as TutorIndustrialModel;
 class TutorIndustrial extends Migration
 {
     /**
@@ -24,6 +24,14 @@ class TutorIndustrial extends Migration
             $table->foreign('empresa_id')->references('id')->on('empresa');
             $table->timestamps();
         });
+        TutorIndustrialModel::create([
+            'nombre'=>'sancho',
+            'apellido'=>'panza',
+            'cedula'=>'9999',
+            'correo'=>'aparece_en_corsel@el.zorro',
+            'telefono'=>'455454',
+            'empresa_id'=>1
+        ]);
     }
 
     /**

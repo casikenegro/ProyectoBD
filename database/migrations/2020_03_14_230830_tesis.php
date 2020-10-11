@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Tesis as TesisModel;
 
 class Tesis extends Migration
 {
@@ -22,12 +23,20 @@ class Tesis extends Migration
             $table->foreign('id_tutor_academico')->references('id')->on('profesor');
             $table->foreignId('id_tutor_industrial');
             $table->foreign('id_tutor_industrial')->references('id')->on('tutor_industrial');
-            $table->foreignId('id_estatus_tesis');
-            $table->foreign('id_estatus_tesis')->references('id')->on('estatus_tesis');
+            $table->enum('estatus_tesis',['APROBADA','RECHAZADA','SIN ENTREGAR','ENTREGADA']);
             $table->date('fecha_inicio');
             $table->date('fecha_finalizacion');
             $table->timestamps();
         });
+        TesisModel::create([
+            'titulo'=>'Programacion landa obsoleta',
+            'id_estudiante_carrera'=>1,
+            'id_tutor_academico'=>1,
+            'id_tutor_industrial'=>1,
+            'estatus_tesis'=>'SIN ENTREGAR',
+            'fecha_inicio'=>'2020-01-01',
+            'fecha_finalizacion'=>'2021-12-12',
+        ]);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\EstudiantesPorCarrera;
 
 class Estudiantes extends Model
 {
@@ -15,4 +16,8 @@ class Estudiantes extends Model
        'telefono'
     ];
     protected $hidden = ['created_at','updated_at'];
+    
+    public function carreras(){
+        return $this->hasMany('App\EstudiantesPorCarrera', 'estudiante_id', 'id');
+    }
 }

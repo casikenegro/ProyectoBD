@@ -14,7 +14,8 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        return view("Carrera.menu",["carreras"=>Carrera::all()]);
+        return response()->json(['data'=>Carrera::all()],200);
+        //return view("Carrera.menu",["carreras"=>Carrera::all()]);
     }
 
     /**
@@ -24,7 +25,7 @@ class CarreraController extends Controller
      */
     public function create()
     {
-        return view("Carrera.register"); 
+        //return view("Carrera.register"); 
     }
 
     /**
@@ -35,8 +36,13 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
-       $data = Carrera::create($request->all());
-       return redirect('/carrera');    }
+      return response()->json([
+          'data'=>Carrera::create($request->all())
+        ],200);
+       
+      
+      //return redirect('/carrera');   
+    }
 
     /**
      * Display the specified resource.
@@ -44,9 +50,13 @@ class CarreraController extends Controller
      * @param  \App\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function show(Carrera $carrera)
+    public function show($id)
     {
-        //
+        $data  = Carrera::find($id);
+        if(!$data){
+            return response()->json(['message'=>'carrera no encontrada'],404);
+        }
+        return response()->json(['data'=>$data],200);
     }
 
     /**
@@ -57,7 +67,7 @@ class CarreraController extends Controller
      */
     public function edit(Carrera $carrera)
     {
-        return view("Carrera.edit",["carrera"=>$carrera]);
+       // return view("Carrera.edit",["carrera"=>$carrera]);
     }
 
     /**
@@ -67,11 +77,14 @@ class CarreraController extends Controller
      * @param  \App\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Carrera $carrera)
+    public function update(Request $request,$id)
     {
+        $carrera  = Carrera::find($id);
+        if(!$carrera)  return response()->json(['message'=>'carrera no encontrada'],404);
         $carrera->fill($request->all());
         $carrera->save();
-        return redirect('/carrera');
+        return response()->json(['data'=>Carrera::find($id)],200);
+     //   return redirect('/carrera');
 
     }
 
@@ -81,8 +94,11 @@ class CarreraController extends Controller
      * @param  \App\Carrera  $carrera
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Carrera $carrera)
+    public function destroy( $id)
     {
+        $carrera  = Carrera::find($id);
+        if(!$carrera)  return response()->json(['message'=>'carrera no encontrada'],404);
         $carrera->delete();
-        return redirect('/carrera');    }
+    //    return redirect('/carrera'); 
+    }
 }

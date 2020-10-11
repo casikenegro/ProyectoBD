@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Estudiantes;
 
 class Estudiante extends Migration
 {
@@ -22,6 +23,12 @@ class Estudiante extends Migration
             $table->string('telefono');
             $table->timestamps();
         });
+        Estudiantes::create([
+            'nombre'=>'juanito',
+            'apellido'=>'alimaña',
+            'correo'=>'sitiene_maña@esmalisia.viva',
+            'telefono'=>'042499999',
+            'cedula'=>'0000']);
     }
 
     /**

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\EstudiantesPorCarrera;
 class CarrerasEstudiantes extends Migration
 {
     /**
@@ -23,6 +23,18 @@ class CarrerasEstudiantes extends Migration
             $table->string('periodo_ingreso');
             $table->timestamps();
         });
+        EstudiantesPorCarrera::create([
+            'carrera_id'=>1,
+            'estudiante_id'=>1,
+            'ingreso_estudiante'=>'2019-11-11',
+            'periodo_ingreso'=>'2019-B'
+        ]);
+        EstudiantesPorCarrera::create([
+            'carrera_id'=>2,
+            'estudiante_id'=>1,
+            'ingreso_estudiante'=>'2019-11-11',
+            'periodo_ingreso'=>'2019-B'
+        ]);
     }
 
     /**

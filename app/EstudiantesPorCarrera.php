@@ -14,4 +14,7 @@ class EstudiantesPorCarrera extends Model
         'periodo_ingreso'
     ];
     protected $hidden = ['created_at','updated_at'];
+    public function carrera(){
+        return $this->belongsTo('App\Carrera', 'carrera_id', 'id');
+    }
 }

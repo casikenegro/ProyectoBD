@@ -14,7 +14,8 @@ class DefensaController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(['data'=>Defensa::all()],200);
+      //  return view("Defensa.menu",["Profesore"=>"hola"]);
     }
 
     /**
@@ -24,7 +25,7 @@ class DefensaController extends Controller
      */
     public function create()
     {
-        //
+       /// return view("Defensa.register"); 
     }
 
     /**
@@ -35,27 +36,33 @@ class DefensaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json([
+            'data'=>Defensa::create($request->all())
+          ],200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Defensa  $defensa
+     * @param  \App\Defensa  $Defensa
      * @return \Illuminate\Http\Response
      */
-    public function show(Defensa $defensa)
+    public function show($id)
     {
-        //
+        $data  = Defensa::find($id);
+        if(!$data){
+            return response()->json(['message'=>'Defensa no encontrado'],404);
+        }
+        return response()->json(['data'=>$data],200);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Defensa  $defensa
+     * @param  \App\Defensa  $Defensa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Defensa $defensa)
+    public function edit(Defensa $Defensa)
     {
         //
     }
@@ -64,21 +71,25 @@ class DefensaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Defensa  $defensa
+     * @param  \App\Defensa  $Defensa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Defensa $defensa)
+    public function update(Request $request,$id)
     {
-        //
+        $data  = Defensa::find($id);
+        if(!$data)  return response()->json(['message'=>'Defensa no encontrada'],404);
+        $data->fill($request->all());
+        $data->save();
+        return response()->json(['data'=>Tesis::find($id)],200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Defensa  $defensa
+     * @param  \App\Tesis  $Tesis
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Defensa $defensa)
+    public function destroy($id)
     {
         //
     }

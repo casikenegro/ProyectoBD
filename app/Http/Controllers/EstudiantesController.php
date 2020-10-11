@@ -6,6 +6,7 @@ use App\Estudiantes;
 use Illuminate\Http\Request;
 use App\Carrera;
 use App\EstudiantesPorCarrera;
+
 class EstudiantesController extends Controller
 {
     /**
@@ -15,7 +16,8 @@ class EstudiantesController extends Controller
      */
     public function index()
     {
-        return view("Estudiantes.menu",["estudiantes"=>Estudiantes::all()]);
+        return response()->json(['data'=>Estudiantes::all()]);
+        //return view("Estudiantes.menu",["estudiantes"=>Estudiantes::all()]);
     }
 
     /**
@@ -25,7 +27,7 @@ class EstudiantesController extends Controller
      */
     public function create()
     {
-        return view("Estudiantes.register",["carreras"=>Carrera::all()]); 
+        //return view("Estudiantes.register",["carreras"=>Carrera::all()]); 
     }
 
     /**
@@ -43,8 +45,13 @@ class EstudiantesController extends Controller
         'ingreso_estudiante'=>$request->ingreso_estudiante,
         'periodo_ingreso'=>$request->periodo_ingreso
         ]);
-        
-        return view("Estudiantes.menu",["estudiantes"=>Estudiantes::all()]);
+        $data->carreras = $data->carreras()->get();
+        $data->carreras->map(function($item){
+            $item->nombreCarrera = $item->carrera()->first()->nombre;
+            return $item;
+        });
+        return resonse()->json(['data'=>$data],200);
+      //  return view("Estudiantes.menu",["estudiantes"=>Estudiantes::all()]);
       
  
     }
@@ -55,9 +62,18 @@ class EstudiantesController extends Controller
      * @param  \App\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function show(Estudiantes $estudiantes)
+    public function show( $id)
     {
-        //
+        $data  = Estudiantes::find($id);
+        if(!$data){
+            return response()->json(['message'=>'estudiante no encontrado'],404);
+        }
+        $data->carreras = $data->carreras()->get();
+        $data->carreras->map(function($item){
+          $item->nombreCarrera = $item->carrera()->first()->nombre;
+          return $item;
+        });
+        return response()->json(['data'=>$data],200);
     }
 
     /**
@@ -68,7 +84,8 @@ class EstudiantesController extends Controller
      */
     public function edit(Estudiantes $estudiantes)
     {
-        return view("Estudiantes.edit",["estudiante"=>$estudiantes]);    }
+    //    return view("Estudiantes.edit",["estudiante"=>$estudiantes]);  
+    }
 
     /**
      * Update the specified resource in storage.
@@ -77,11 +94,23 @@ class EstudiantesController extends Controller
      * @param  \App\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Estudiantes $estudiantes)
+    public function update(Request $request, $id)
     {
-        $carrera->fill($request->all());
-        $carrera->save();
-        return redirect('/estudiante');    }
+        
+        $data  = Estudiantes::find($id);
+        if(!$data){
+            return response()->json(['message'=>'estudiante no encontrado'],404);
+        }
+        $data->fill($request->all());
+        $data->save();
+        $data->carreras = $data->carreras()->get();
+        $data->map(function($item){
+            $item->nombreCarrera = $item->carrera()->first()->nombre;
+            return $item;
+        });
+        return response()->json(['data'=>$data],200);        
+        //return redirect('/estudiante');  
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -89,9 +118,11 @@ class EstudiantesController extends Controller
      * @param  \App\Estudiantes  $estudiantes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Estudiantes $estudiantes)
+    public function destroy( $id)
     {
-        $carrera->delete();
-        return redirect('/estudiante'); 
+        $data  = Estudiantes::find($id);
+        $data->delete();
+        return response()->json(['meesage'=>"elimanado"],200);
+      //  return redirect('/estudiante'); 
     }
 }

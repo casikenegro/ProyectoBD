@@ -14,7 +14,7 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        return view("Empresa.menu",["data"=>"hola"]);
+       // return view("Empresa.menu",["data"=>"hola"]);
     }
 
     /**
@@ -24,7 +24,7 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        return view("Empresa.register"); 
+       // return view("Empresa.register"); 
     }
 
     /**

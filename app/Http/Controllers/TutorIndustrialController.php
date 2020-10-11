@@ -14,7 +14,8 @@ class TutorIndustrialController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(['data'=>TutorIndustrial::all()],200);
+      //  return view("TutorIndustrial.menu",["Profesore"=>"hola"]);
     }
 
     /**
@@ -24,7 +25,7 @@ class TutorIndustrialController extends Controller
      */
     public function create()
     {
-        //
+       /// return view("TutorIndustrial.register"); 
     }
 
     /**
@@ -35,27 +36,33 @@ class TutorIndustrialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json([
+            'data'=>TutorIndustrial::create($request->all())
+          ],200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\TutorIndustrial  $tutorIndustrial
+     * @param  \App\TutorIndustrial  $TutorIndustrial
      * @return \Illuminate\Http\Response
      */
-    public function show(TutorIndustrial $tutorIndustrial)
+    public function show($id)
     {
-        //
+        $data  = TutorIndustrial::find($id);
+        if(!$data){
+            return response()->json(['message'=>'TutorIndustrial no encontrado'],404);
+        }
+        return response()->json(['data'=>$data],200);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\TutorIndustrial  $tutorIndustrial
+     * @param  \App\TutorIndustrial  $TutorIndustrial
      * @return \Illuminate\Http\Response
      */
-    public function edit(TutorIndustrial $tutorIndustrial)
+    public function edit(TutorIndustrial $TutorIndustrial)
     {
         //
     }
@@ -64,21 +71,25 @@ class TutorIndustrialController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TutorIndustrial  $tutorIndustrial
+     * @param  \App\TutorIndustrial  $TutorIndustrial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TutorIndustrial $tutorIndustrial)
+    public function update(Request $request,$id)
     {
-        //
+        $data  = TutorIndustrial::find($id);
+        if(!$data)  return response()->json(['message'=>'TutorIndustrial no encontrada'],404);
+        $data->fill($request->all());
+        $data->save();
+        return response()->json(['data'=>TutorIndustrial::find($id)],200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\TutorIndustrial  $tutorIndustrial
+     * @param  \App\TutorIndustrial  $Tesis
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TutorIndustrial $tutorIndustrial)
+    public function destroy($id)
     {
         //
     }

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Carrera as CarreraModel;
 
 class Carrera extends Migration
 {
@@ -19,6 +20,14 @@ class Carrera extends Migration
             $table->string('descripcion',255);
             $table->timestamps();
         });
+        CarreraModel::create([
+            'nombre'=>'informatica',
+            'descripcion'=> 'carrera donde las personas creen que reparan computdaros cuando entran'
+        ]);
+        CarreraModel::create([
+            'nombre'=>'contaduria',
+            'descripcion'=> 'aprenderas sobre manicura y sobre a usar excel'
+        ]);
     }
 
     /**

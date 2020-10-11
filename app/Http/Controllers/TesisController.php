@@ -7,14 +7,15 @@ use Illuminate\Http\Request;
 
 class TesisController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return response()->json(['data'=>Tesis::all()],200);
+      //  return view("Tesis.menu",["Profesore"=>"hola"]);
     }
 
     /**
@@ -24,7 +25,7 @@ class TesisController extends Controller
      */
     public function create()
     {
-        //
+       /// return view("Tesis.register"); 
     }
 
     /**
@@ -35,27 +36,33 @@ class TesisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json([
+            'data'=>Tesis::create($request->all())
+          ],200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tesis  $tesis
+     * @param  \App\Tesis  $Tesis
      * @return \Illuminate\Http\Response
      */
-    public function show(Tesis $tesis)
+    public function show($id)
     {
-        //
+        $data  = Tesis::find($id);
+        if(!$data){
+            return response()->json(['message'=>'Tesis no encontrado'],404);
+        }
+        return response()->json(['data'=>$data],200);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Tesis  $tesis
+     * @param  \App\Tesis  $Tesis
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tesis $tesis)
+    public function edit(Tesis $Tesis)
     {
         //
     }
@@ -64,21 +71,25 @@ class TesisController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Tesis  $tesis
+     * @param  \App\Tesis  $Tesis
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tesis $tesis)
+    public function update(Request $request,$id)
     {
-        //
+        $data  = Tesis::find($id);
+        if(!$data)  return response()->json(['message'=>'Tesis no encontrada'],404);
+        $data->fill($request->all());
+        $data->save();
+        return response()->json(['data'=>Tesis::find($id)],200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Tesis  $tesis
+     * @param  \App\Tesis  $Tesis
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tesis $tesis)
+    public function destroy($id)
     {
         //
     }

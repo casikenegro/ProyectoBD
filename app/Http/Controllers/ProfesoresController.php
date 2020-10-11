@@ -14,7 +14,8 @@ class ProfesoresController extends Controller
      */
     public function index()
     {
-        return view("Profesores.menu",["Profesore"=>"hola"]);
+        return response()->json(['data'=>Profesores::all()],200);
+      //  return view("Profesores.menu",["Profesore"=>"hola"]);
     }
 
     /**
@@ -24,7 +25,7 @@ class ProfesoresController extends Controller
      */
     public function create()
     {
-        return view("Profesores.register"); 
+       /// return view("Profesores.register"); 
     }
 
     /**
@@ -35,7 +36,9 @@ class ProfesoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json([
+            'data'=>Profesores::create($request->all())
+          ],200);
     }
 
     /**
@@ -44,9 +47,13 @@ class ProfesoresController extends Controller
      * @param  \App\Profesores  $profesores
      * @return \Illuminate\Http\Response
      */
-    public function show(Profesores $profesores)
+    public function show($id)
     {
-        //
+        $data  = Profesores::find($id);
+        if(!$data){
+            return response()->json(['message'=>'Profesor no encontrado'],404);
+        }
+        return response()->json(['data'=>$data],200);
     }
 
     /**
@@ -67,9 +74,13 @@ class ProfesoresController extends Controller
      * @param  \App\Profesores  $profesores
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profesores $profesores)
+    public function update(Request $request,$id)
     {
-        //
+        $data  = Profesores::find($id);
+        if(!$data)  return response()->json(['message'=>'Profesores no encontrada'],404);
+        $data->fill($request->all());
+        $data->save();
+        return response()->json(['data'=>Profesores::find($id)],200);
     }
 
     /**
