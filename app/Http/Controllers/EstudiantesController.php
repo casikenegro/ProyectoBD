@@ -16,7 +16,14 @@ class EstudiantesController extends Controller
      */
     public function index()
     {
-        return response()->json(['data'=>Estudiantes::all()]);
+        $data = Estudiantes::all();
+        $data->carreras = $data->carreras()->get();
+        $data->carreras->map(function($item){
+            $item->nombreCarrera = $item->carrera()->first()->nombre;
+            return $item;
+        });
+        return response()->json(['data'=>$data],200);
+        return response()->json(['data'=>$data]);
         //return view("Estudiantes.menu",["estudiantes"=>Estudiantes::all()]);
     }
 
