@@ -50,7 +50,7 @@ class EstudiantesController extends Controller
             $item->nombreCarrera = $item->carrera()->first()->nombre;
             return $item;
         });
-        return resonse()->json(['data'=>$data],200);
+        return response()->json(['data'=>$data],200);
       //  return view("Estudiantes.menu",["estudiantes"=>Estudiantes::all()]);
       
  
