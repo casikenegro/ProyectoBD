@@ -19,7 +19,7 @@ class EstudiantesController extends Controller
         $data = Estudiantes::all();
         $data->map(function($item){
             $item->carreras = $item->carreras()->get();
-
+            return $item;
         });
         $data->carreras->map(function($item){
             $item->nombreCarrera = $item->carrera()->first()->nombre;
