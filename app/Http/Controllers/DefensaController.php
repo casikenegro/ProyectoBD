@@ -80,7 +80,7 @@ class DefensaController extends Controller
         if(!$data)  return response()->json(['message'=>'Defensa no encontrada'],404);
         $data->fill($request->all());
         $data->save();
-        return response()->json(['data'=>Tesis::find($id)],200);
+        return response()->json(['data'=>Defensa::find($id)],200);
     }
 
     /**

@@ -35,7 +35,12 @@ class EstudiantesPorCarreraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        EstudiantesPorCarrera::create([
+            'carrera_id'=>$request->carrera_id,
+        'estudiante_id'=>$data->id,
+        'ingreso_estudiante'=>$request->ingreso_estudiante,
+        'periodo_ingreso'=>$request->periodo_ingreso
+        ]);
     }
 
     /**

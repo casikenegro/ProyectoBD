@@ -14,6 +14,7 @@ class EmpresaController extends Controller
      */
     public function index()
     {
+        return response()->json(["data"=>Empresa::all()]);
        // return view("Empresa.menu",["data"=>"hola"]);
     }
 
@@ -35,7 +36,7 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json(["data"=>Empresa::create($request->all())]);
     }
 
     /**
@@ -44,9 +45,13 @@ class EmpresaController extends Controller
      * @param  \App\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function show(Empresa $empresa)
+    public function show($id)
     {
-        //
+        $data  = Empresa::find($id);
+        if(!$data){
+            return response()->json(['message'=>'Empresa no encontrada'],404);
+        }
+        return response()->json(['data'=>$data],200);
     }
 
     /**
@@ -67,9 +72,13 @@ class EmpresaController extends Controller
      * @param  \App\Empresa  $empresa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empresa $empresa)
+    public function update(Request $request, $id)
     {
-        //
+        $data  = Empresa::find($id);
+        if(!$data)  return response()->json(['message'=>'Empresa no encontrada'],404);
+        $data->fill($request->all());
+        $data->save();
+        return response()->json(['data'=>Empresa::find($id)],200);
     }
 
     /**
