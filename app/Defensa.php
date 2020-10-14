@@ -22,4 +22,14 @@ class Defensa extends Model
         'nota_total',
     ];
     protected $hidden = ['created_at','updated_at'];
+
+    public function juez1(){
+        return $this->belongsTo('App\Profesores', 'id_juez_n1', 'id');
+    }
+    public function juez2(){
+        return $this->belongsTo('App\Profesores', 'id_juez_n2', 'id');
+    }
+    public function tesis(){
+        return $this->belongsTo('App\Tesis', 'id_tesis', 'id');
+    }
 }

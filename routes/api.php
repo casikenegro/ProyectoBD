@@ -18,6 +18,7 @@ Route::apiResource('estudiantes','EstudiantesController');
 Route::apiResource('empresas','EmpresaController');
 Route::apiResource('profesores','ProfesoresController');
 Route::apiResource('tesis','TesisController');
+Route::apiResource('defensas','DefensaController');
 Route::apiResource('tutores-industriales','TutorIndustrialController');
 
 

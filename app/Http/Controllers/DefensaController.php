@@ -14,7 +14,14 @@ class DefensaController extends Controller
      */
     public function index()
     {
-        return response()->json(['data'=>Defensa::all()],200);
+        $data = Defensa::all();
+        $data->map(function($item){
+            $item->juez1 = $item->juez1()->first();
+            $item->juez2 = $item->juez2()->first();
+            $item->tesis = $item->tesis()->first();
+            return $item;
+        });
+        return response()->json(['data'=>$data],200);
       //  return view("Defensa.menu",["Profesore"=>"hola"]);
     }
 
@@ -49,10 +56,14 @@ class DefensaController extends Controller
      */
     public function show($id)
     {
-        $data  = Defensa::find($id);
+       
+        $data = Defensa::find($id);
         if(!$data){
-            return response()->json(['message'=>'Defensa no encontrado'],404);
+            return response()->json(['message'=>'Defensa no encontrada'],404);
         }
+        $data->juez1 = $data->juez1()->first();
+        $data->juez2 = $data->juez2()->first();
+        $data->tesis = $data->tesis()->first();
         return response()->json(['data'=>$data],200);
     }
 

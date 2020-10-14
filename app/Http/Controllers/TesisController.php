@@ -14,7 +14,14 @@ class TesisController extends Controller
      */
     public function index()
     {
-        return response()->json(['data'=>Tesis::all()],200);
+        $data = Tesis::all();
+        $data->map(function($item){
+            $item->tutorAcademico = $item->tutorAcademico()->first();
+            $item->tutorIndustrial = $item->industrial()->first();
+            $item->estudiante = $item->estudiante()->first();
+            return $item;
+        });
+        return response()->json(['data'=>$data],200);
       //  return view("Tesis.menu",["Profesore"=>"hola"]);
     }
 
@@ -49,10 +56,13 @@ class TesisController extends Controller
      */
     public function show($id)
     {
-        $data  = Tesis::find($id);
+        $data = Tesis::find($id);
         if(!$data){
-            return response()->json(['message'=>'Tesis no encontrado'],404);
+            return response()->json(['message'=>'Tesis no encontrada'],404);
         }
+        $data->tutorAcademico = $data->tutorAcademico()->first();
+        $data->tutorIndustrial = $data->industrial()->first();
+        $data->estudiante = $data->estudiante()->first();
         return response()->json(['data'=>$data],200);
     }
 
